@@ -38,7 +38,7 @@ namespace Annex.Tests
         /// </summary>
         public static IEnumerable<object[]> DateTimeToDateKeyCases
         {
-            get 
+            get
             {
                 return new[]
                 {
@@ -78,8 +78,8 @@ namespace Annex.Tests
         /// </summary>
         public static IEnumerable<object[]> DateTimeOffsetToDateKeyCases
         {
-            get 
-            { 
+            get
+            {
                 return DateTimeToDateKeyCases
                     .Select(x => new object[] { new DateTimeOffset((DateTime)x[0]), x[1] });
             }
