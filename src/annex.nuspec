@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>annex</id>
-    <version>0.1.0-alpha</version>
+    <version>0.2.0-alpha</version>
     <authors>James Snape</authors>
     <owners>James Snape</owners>
     <licenseUrl>https://github.com/jsnape/annex/blob/master/LICENSE</licenseUrl>
