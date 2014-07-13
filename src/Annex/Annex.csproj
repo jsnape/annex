@@ -58,6 +58,7 @@
       <Link>Properties\AssemblyInfoVersion.cs</Link>
     </Compile>
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
