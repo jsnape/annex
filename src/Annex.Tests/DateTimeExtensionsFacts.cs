@@ -31,70 +31,63 @@ namespace Annex.Tests
     /// <summary>
     /// DateTimeExtensions Facts
     /// </summary>
+    [CLSCompliant(false)]
     public static class DateTimeExtensionsFacts
     {
         /// <summary>
         /// Gets the DateTime To DateKey Test Cases
         /// </summary>
-        public static IEnumerable<object[]> DateTimeToDateKeyCases
+        /// <returns>Test data</returns>
+        public static IEnumerable<object[]> ListDateTimeToDateKeyCases()
         {
-            get
+            return new[]
             {
-                return new[]
-                {
-                    new object[] { new DateTime(2014, 01, 01), 20140101 },
-                    new object[] { new DateTime(2014, 02, 01), 20140201 },
-                    new object[] { new DateTime(2014, 02, 02), 20140202 },
-                    new object[] { new DateTime(2014, 02, 02, 01, 01, 01), 20140202 },
-                    new object[] { DateTime.MinValue, 00010101 },
-                    new object[] { DateTime.MaxValue, 99991231 },
-                };
-            }
+                new object[] { new DateTime(2014, 01, 01), 20140101 },
+                new object[] { new DateTime(2014, 02, 01), 20140201 },
+                new object[] { new DateTime(2014, 02, 02), 20140202 },
+                new object[] { new DateTime(2014, 02, 02, 01, 01, 01), 20140202 },
+                new object[] { DateTime.MinValue, 00010101 },
+                new object[] { DateTime.MaxValue, 99991231 },
+            };
         }
 
         /// <summary>
         /// Gets the DateTime To TimeKey Test Cases
         /// </summary>
-        public static IEnumerable<object[]> DateTimeToTimeKeyCases
+        /// <returns>Test data</returns>
+        public static IEnumerable<object[]> ListDateTimeToTimeKeyCases()
         {
-            get
+            return new[]
             {
-                return new[]
-                {
-                    new object[] { new DateTime(2014, 01, 01), 9000000 },
-                    new object[] { new DateTime(2014, 02, 01), 9000000 },
-                    new object[] { new DateTime(2014, 02, 02), 9000000 },
-                    new object[] { new DateTime(2014, 02, 02, 01, 01, 01), 9010101 },
-                    new object[] { new DateTime(2014, 02, 02, 01, 02, 01), 9010201 },
-                    new object[] { new DateTime(2014, 02, 02, 01, 01, 02), 9010102 },
-                    new object[] { DateTime.MinValue, 9000000 },
-                    new object[] { DateTime.MaxValue, 9235959 },
-                };
-            }
+                new object[] { new DateTime(2014, 01, 01), 9000000 },
+                new object[] { new DateTime(2014, 02, 01), 9000000 },
+                new object[] { new DateTime(2014, 02, 02), 9000000 },
+                new object[] { new DateTime(2014, 02, 02, 01, 01, 01), 9010101 },
+                new object[] { new DateTime(2014, 02, 02, 01, 02, 01), 9010201 },
+                new object[] { new DateTime(2014, 02, 02, 01, 01, 02), 9010102 },
+                new object[] { DateTime.MinValue, 9000000 },
+                new object[] { DateTime.MaxValue, 9235959 },
+            };
         }
 
         /// <summary>
         /// Gets the DateTimeOffset To DateKey Test Cases
         /// </summary>
-        public static IEnumerable<object[]> DateTimeOffsetToDateKeyCases
+        /// <returns>Test data</returns>
+        public static IEnumerable<object[]> ListDateTimeOffsetToDateKeyCases()
         {
-            get
-            {
-                return DateTimeToDateKeyCases
-                    .Select(x => new object[] { new DateTimeOffset((DateTime)x[0]), x[1] });
-            }
+            return ListDateTimeToDateKeyCases()
+                .Select(x => new object[] { new DateTimeOffset((DateTime)x[0]), x[1] });
         }
 
         /// <summary>
         /// Gets the DateTimeOffset To TimeKey Test Cases
         /// </summary>
-        public static IEnumerable<object[]> DateTimeOffsetToTimeKeyCases
+        /// <returns>Test data</returns>
+        public static IEnumerable<object[]> ListDateTimeOffsetToTimeKeyCases()
         {
-            get
-            {
-                return DateTimeToTimeKeyCases
-                    .Select(x => new object[] { new DateTimeOffset((DateTime)x[0]), x[1] });
-            }
+            return ListDateTimeToTimeKeyCases()
+                .Select(x => new object[] { new DateTimeOffset((DateTime)x[0]), x[1] });
         }
 
         /// <summary>
@@ -103,7 +96,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [PropertyData("DateTimeToDateKeyCases")]
+        [MemberData("ListDateTimeToDateKeyCases")]
         public static void DateTimeToDateKeyConversionShouldBeCorrect(DateTime input, int expected)
         {
             Assert.Equal(expected, input.ToDateKey());
@@ -115,7 +108,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [PropertyData("DateTimeToTimeKeyCases")]
+        [MemberData("ListDateTimeToTimeKeyCases")]
         public static void DateTimeToTimeKeyConversionShouldBeCorrect(DateTime input, int expected)
         {
             Assert.Equal(expected, input.ToTimeKey());
@@ -127,7 +120,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [PropertyData("DateTimeOffsetToDateKeyCases")]
+        [MemberData("ListDateTimeOffsetToDateKeyCases")]
         public static void DateTimeOffsetToDateKeyConversionShouldBeCorrect(DateTimeOffset input, int expected)
         {
             Assert.Equal(expected, input.ToDateKey());
@@ -139,7 +132,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [PropertyData("DateTimeOffsetToTimeKeyCases")]
+        [MemberData("ListDateTimeOffsetToTimeKeyCases")]
         public static void DateTimeOffsetToTimeKeyConversionShouldBeCorrect(DateTimeOffset input, int expected)
         {
             Assert.Equal(expected, input.ToTimeKey());

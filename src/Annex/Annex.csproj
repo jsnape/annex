@@ -58,7 +58,10 @@
       <Link>Properties\AssemblyInfoVersion.cs</Link>
     </Compile>
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="DbConnectionExtensions.cs" />
+    <Compile Include="DbProviderConnectionFactory.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="IConnectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
     <BooleanProperty Name="ViolationsAsErrors">True</BooleanProperty>
     <CollectionProperty Name="RecognizedWords">
       <Value>Csv</Value>
+      <Value>Db</Value>
     </CollectionProperty>
   </GlobalSettings>
 </StyleCopSettings>
