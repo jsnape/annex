@@ -21,6 +21,8 @@
 #endregion
 
 using System.Reflection;
+using System.Resources;
 
 [assembly: AssemblyTitle("Annex.Tests")]
 [assembly: AssemblyDescription("")]
+[assembly: NeutralResourcesLanguage("en-US")]

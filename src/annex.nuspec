@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>annex</id>
-    <version>0.2.0-alpha</version>
+    <version>0.2.1</version>
     <authors>James Snape</authors>
     <owners>James Snape</owners>
     <licenseUrl>https://github.com/jsnape/annex/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/jsnape/annex</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A set of C# extension methods and helpers.</description>
-    <releaseNotes>Initial pre-release version.</releaseNotes>
+    <releaseNotes>Initial version.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>annex extensions helpers collections functional</tags>
   </metadata>

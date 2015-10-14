@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RootElement ChildAttribute="childAttribute2" LeafAttribute="leafattribute3">
+  <ChildElement ChildAttribute="childAttribute1">
+    <ChildElement LeafAttribute="leafattribute2">
+      <LeafElement LeafAttribute="leafattribute1" LeafOnlyAttribute="leafOnlyAttribute">
+      </LeafElement>
+    </ChildElement>
+  </ChildElement>
+</RootElement>

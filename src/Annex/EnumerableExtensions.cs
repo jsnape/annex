@@ -25,6 +25,7 @@ namespace Annex
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Enumerable Extensions
@@ -77,6 +78,132 @@ namespace Annex
             {
                 action(item);
             }
+        }
+
+        /// <summary>
+        /// Calls the supplied action for every item in the sequence.
+        /// </summary>
+        /// <typeparam name="T">Type of item in the sequence.</typeparam>
+        /// <param name="sequence">The sequence.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>A continuation task representing the completion of this asynchronous method call.</returns>
+        /// <exception cref="System.ArgumentNullException">If sequence or action is null</exception>
+        public static async Task DoAsync<T>(this IEnumerable<T> sequence, Func<T, Task> action)
+        {
+            if (sequence == null)
+            {
+                throw new ArgumentNullException("sequence");
+            }
+
+            if (action == null)
+            {
+                throw new ArgumentNullException("action");
+            }
+
+            foreach (T item in sequence)
+            {
+                await action(item);
+            }
+        }
+
+        /// <summary>
+        /// Calls the supplied action for every item in the sequence.
+        /// </summary>
+        /// <typeparam name="T">Type of item in the sequence.</typeparam>
+        /// <param name="sequence">The sequence.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>A continuation task representing the completion of this asynchronous method call.</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// If sequence or action is null
+        /// </exception>
+        public static async Task ParallelDoAsync<T>(this IEnumerable<T> sequence, Func<T, Task> action)
+        {
+            if (sequence == null)
+            {
+                throw new ArgumentNullException("sequence");
+            }
+
+            if (action == null)
+            {
+                throw new ArgumentNullException("action");
+            }
+
+            var tasks = new List<Task>();
+
+            foreach (T item in sequence)
+            {
+                tasks.Add(action(item));
+            }
+
+            await Task.WhenAll(tasks);
+        }
+
+        /// <summary>
+        /// Uses the specified sequence.
+        /// </summary>
+        /// <typeparam name="T">The type of item in the sequence.</typeparam>
+        /// <typeparam name="TResult">The type of the disposable.</typeparam>
+        /// <param name="sequence">The sequence.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns>
+        /// The same sequence automatically disposed.
+        /// </returns>
+        public static IEnumerable<T> Use<T, TResult>(this IEnumerable<T> sequence, Func<T, TResult> selector)
+        {
+            foreach (var item in sequence)
+            {
+                var disposable = selector(item) as IDisposable;
+
+                try
+                {
+                    yield return item;
+                }
+                finally
+                {
+                    if (disposable != null)
+                    {
+                        disposable.Dispose();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Uses the specified object.
+        /// </summary>
+        /// <typeparam name="T">The type of item in the sequence.</typeparam>
+        /// <typeparam name="TResult">The type of the disposable.</typeparam>
+        /// <param name="obj">The object.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns>
+        /// A single sequence object.
+        /// </returns>
+        public static IEnumerable<T> UseSingle<T, TResult>(this T obj, Func<T, TResult> selector) where TResult : IDisposable
+        {
+            var disposable = selector(obj) as IDisposable;
+
+            try
+            {
+                yield return obj;
+            }
+            finally
+            {
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Uses the specified object.
+        /// </summary>
+        /// <typeparam name="T">The type of item in the sequence.</typeparam>
+        /// <param name="obj">The object.</param>
+        /// <returns>A single sequence object.</returns>
+        public static IEnumerable<T> UseSingle<T>(this T obj) where T : IDisposable
+        {
+            return UseSingle(obj, o => o);
         }
     }
 }
