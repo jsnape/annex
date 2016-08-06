@@ -47,7 +47,7 @@ namespace Annex
         /// or
         /// memberLambda is not a property
         /// </exception>
-        public static void SetPropertyValue<T>(this T target, LambdaExpression memberLambda, T value)
+        public static void SetPropertyValue<T>(this T target, LambdaExpression memberLambda, object value)
         {
             if (target == null)
             {
