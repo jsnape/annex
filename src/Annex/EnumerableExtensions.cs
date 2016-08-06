@@ -1,4 +1,4 @@
-﻿#region Copyright (c) 2014 James Snape
+﻿#region Copyright (c) 2014-2016 James Snape
 // <copyright file="EnumerableExtensions.cs" company="James Snape">
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,27 @@ namespace Annex
     /// </summary>
     public static class EnumerableExtensions
     {
+        /// <summary>
+        /// Distinct By a specific field.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="source">The source.</param>
+        /// <param name="keySelector">The key selector.</param>
+        /// <returns>The distinct set of items.</returns>
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            HashSet<TKey> seenKeys = new HashSet<TKey>();
+
+            foreach (TSource element in source)
+            {
+                if (seenKeys.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
+
         /// <summary>
         /// Iterates over the collection calling the action for each element.
         /// </summary>
@@ -204,6 +225,28 @@ namespace Annex
         public static IEnumerable<T> UseSingle<T>(this T obj) where T : IDisposable
         {
             return UseSingle(obj, o => o);
+        }
+
+        /// <summary>
+        /// Generates a single value sequence.
+        /// </summary>
+        /// <typeparam name="T">Type of sequence to generate.</typeparam>
+        /// <param name="value">The value.</param>
+        /// <returns>A sequence with a single item in it.</returns>
+        public static IEnumerable<T> ToEnumerable<T>(this T value)
+        {
+            yield return value;
+        }
+
+        /// <summary>
+        /// Generates a sequence from the supplied parameters.
+        /// </summary>
+        /// <typeparam name="T">Type of sequence to generate.</typeparam>
+        /// <param name="values">The values.</param>
+        /// <returns>A sequence.</returns>
+        public static IEnumerable<T> ToEnumerable<T>(params T[] values)
+        {
+            return values;
         }
     }
 }

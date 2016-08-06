@@ -81,6 +81,7 @@
     <Compile Include="DbConnectionExtensionsFacts.cs" />
     <Compile Include="DbProviderConnectionFactoryFacts.cs" />
     <Compile Include="EnumerableExtensionsFacts.cs" />
+    <Compile Include="GeneratorFacts.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="NumberExtensionsFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
