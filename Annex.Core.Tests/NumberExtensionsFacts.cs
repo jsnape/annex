@@ -41,7 +41,6 @@ namespace Annex.Tests
         [InlineData(10, "a")]
         [InlineData(35, "z")]
         [InlineData(36, "10")]
-        [InlineData(-0, "0")]
         [InlineData(-1, "-1")]
         [InlineData(-10, "-a")]
         [InlineData(-35, "-z")]

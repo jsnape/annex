@@ -15,9 +15,6 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
-[*.yml]
-indent_size = 2
-
 [*.{cs,vb}]
 
 # IDE0044: Add readonly modifier
@@ -105,7 +102,7 @@ dotnet_diagnostic.IDE0036.severity = warning
 dotnet_diagnostic.IDE0037.severity = warning
 
 # IDE0039: Use local function
-dotnet_diagnostic.IDE0039.severity = warning
+dotnet_diagnostic.IDE0039.severity = suggestion
 
 # IDE0040: Add accessibility modifiers
 dotnet_diagnostic.IDE0040.severity = warning
@@ -123,7 +120,7 @@ dotnet_diagnostic.IDE0043.severity = warning
 dotnet_diagnostic.IDE0045.severity = warning
 
 # IDE0046: Convert to conditional expression
-dotnet_diagnostic.IDE0046.severity = warning
+dotnet_diagnostic.IDE0046.severity = suggestion
 
 # IDE0047: Remove unnecessary parentheses
 dotnet_diagnostic.IDE0047.severity = warning

@@ -39,7 +39,7 @@ namespace Annex.Tests
         /// <summary>
         /// The sample connection
         /// </summary>
-        private IDbConnection connection = Substitute.For<IDbConnection>();
+        private readonly IDbConnection connection = Substitute.For<IDbConnection>();
 
         /// <summary>
         /// Throws when null connection passed.
@@ -48,7 +48,7 @@ namespace Annex.Tests
         public static void ThrowsWhenNullConnectionPassed()
         {
             IDbConnection connection = null;
-            Assert.Throws<ArgumentNullException>(() => connection.Connect());
+            _ = Assert.Throws<ArgumentNullException>(() => connection.Connect());
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Annex.Tests
         [Fact]
         public void ShouldOpenTheConnection()
         {
-            this.connection.Connect();
+            _ = this.connection.Connect();
             this.connection.Received().Open();
         }
     }

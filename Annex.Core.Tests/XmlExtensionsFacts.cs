@@ -74,7 +74,7 @@ namespace Annex.Tests
         [Fact]
         public static void NullElementOrAncestorAttributeElementShouldThrow()
         {
-            Action action = () => XmlExtensions.ElementOrAncestorAttribute(null, null, null);
+            Action action = () => XmlExtensions.SelfOrAncestorAttribute(null, null, null);
             var exception = Assert.Throws<ArgumentNullException>(action);
             Assert.Equal("element", exception.ParamName);
         }
@@ -143,7 +143,7 @@ namespace Annex.Tests
         public void ElementAncestorAttributeShouldStartAtElement()
         {
             var leaf = this.doc.Descendants("LeafElement").Single();
-            var value = leaf.ElementOrAncestorAttribute("LeafAttribute", null);
+            var value = leaf.SelfOrAncestorAttribute("LeafAttribute", null);
             Assert.Equal("leafattribute1", value);
         }
 
@@ -154,7 +154,7 @@ namespace Annex.Tests
         public void ElementAncestorAttributeShouldSearchUpwards()
         {
             var leaf = this.doc.Descendants("LeafElement").Single();
-            var value = leaf.ElementOrAncestorAttribute("ChildAttribute", null);
+            var value = leaf.SelfOrAncestorAttribute("ChildAttribute", null);
             Assert.Equal("childAttribute1", value);
         }
 
@@ -166,7 +166,7 @@ namespace Annex.Tests
         {
             var leaf = this.doc.Descendants("LeafElement").Single();
             var defaultValue = "DefaultValue";
-            var value = leaf.ElementOrAncestorAttribute("MissingAttribute", defaultValue);
+            var value = leaf.SelfOrAncestorAttribute("MissingAttribute", defaultValue);
             Assert.Equal(defaultValue, value);
         }
     }

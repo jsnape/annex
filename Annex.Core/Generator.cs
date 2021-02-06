@@ -35,6 +35,7 @@ namespace Annex
     /// </remarks>
     public static class Generator
     {
+#pragma warning disable CA5394 // Do not use insecure randomness
         /// <summary>
         /// Random number sequence generator.
         /// </summary>
@@ -76,6 +77,7 @@ namespace Annex
             var rand = new Random();
             return Repeat(() => rand.NextDouble(), count);
         }
+#pragma warning restore CA5394 // Do not use insecure randomness
 
         /// <summary>
         /// Repeats the specified function to return a sequence of items.
@@ -97,9 +99,14 @@ namespace Annex
         /// <returns>An sequence that contains a repeated value.</returns>
         public static IEnumerable<T> Repeat<T>(Func<T> nextItem)
         {
-            while (true)
+            return nextItem == null ? throw new ArgumentNullException(nameof(nextItem)) : RepeatInternal();
+
+            IEnumerable<T> RepeatInternal()
             {
-                yield return nextItem();
+                while (true)
+                {
+                    yield return nextItem();
+                }
             }
         }
     }

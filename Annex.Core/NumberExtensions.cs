@@ -24,7 +24,7 @@ namespace Annex
 {
     using System;
     using System.Globalization;
-    
+
     /// <summary>
     /// Number Extensions
     /// </summary>

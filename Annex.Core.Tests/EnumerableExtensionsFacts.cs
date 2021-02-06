@@ -151,8 +151,8 @@ namespace Annex.Tests
                 await items.DoAsync(async (x) =>
                 {
                     sum += x;
-                    await Task.FromResult(0);
-                });
+                    _ = await Task.FromResult(0).ConfigureAwait(false);
+                }).ConfigureAwait(false);
 
                 Assert.Equal(expected, sum);
             }
@@ -205,8 +205,8 @@ namespace Annex.Tests
                 await items.ParallelDoAsync(async (x) =>
                 {
                     sum += x;
-                    await Task.FromResult(0);
-                });
+                    _ = await Task.FromResult(0).ConfigureAwait(false);
+                }).ConfigureAwait(false);
 
                 Assert.Equal(expected, sum);
             }
@@ -261,11 +261,12 @@ namespace Annex.Tests
             [Fact]
             public static void CallDisposeWhenUsingASequence()
             {
-                var disposableSequence = new List<IDisposable>();
-
-                disposableSequence.Add(Substitute.For<IDisposable>());
-                disposableSequence.Add(Substitute.For<IDisposable>());
-                disposableSequence.Add(Substitute.For<IDisposable>());
+                var disposableSequence = new List<IDisposable>
+                {
+                    Substitute.For<IDisposable>(),
+                    Substitute.For<IDisposable>(),
+                    Substitute.For<IDisposable>()
+                };
 
                 disposableSequence
                     .Use(x => x)

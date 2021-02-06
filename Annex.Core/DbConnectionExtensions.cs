@@ -44,7 +44,7 @@ namespace Annex
         {
             if (connection == null)
             {
-                throw new ArgumentNullException("connection");
+                throw new ArgumentNullException(nameof(connection));
             }
 
             connection.Open();

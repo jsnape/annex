@@ -42,13 +42,23 @@ namespace Annex
         /// <returns>The distinct set of items.</returns>
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
-            HashSet<TKey> seenKeys = new HashSet<TKey>();
-
-            foreach (TSource element in source)
+            if (keySelector == null)
             {
-                if (seenKeys.Add(keySelector(element)))
+                throw new ArgumentNullException(nameof(keySelector));
+            }
+
+            return source == null ? throw new ArgumentNullException(nameof(source)) : DistinctByInternal();
+
+            IEnumerable<TSource> DistinctByInternal()
+            {
+                HashSet<TKey> seenKeys = new HashSet<TKey>();
+
+                foreach (TSource element in source)
                 {
-                    yield return element;
+                    if (seenKeys.Add(keySelector(element)))
+                    {
+                        yield return element;
+                    }
                 }
             }
         }
@@ -63,12 +73,12 @@ namespace Annex
         {
             if (sequence == null)
             {
-                throw new ArgumentNullException("sequence");
+                throw new ArgumentNullException(nameof(sequence));
             }
 
             if (action == null)
             {
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
             }
 
             foreach (var item in sequence)
@@ -87,12 +97,12 @@ namespace Annex
         {
             if (sequence == null)
             {
-                throw new ArgumentNullException("sequence");
+                throw new ArgumentNullException(nameof(sequence));
             }
 
             if (action == null)
             {
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
             }
 
             foreach (T item in sequence)
@@ -113,17 +123,17 @@ namespace Annex
         {
             if (sequence == null)
             {
-                throw new ArgumentNullException("sequence");
+                throw new ArgumentNullException(nameof(sequence));
             }
 
             if (action == null)
             {
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
             }
 
             foreach (T item in sequence)
             {
-                await action(item);
+                await action(item).ConfigureAwait(false);
             }
         }
 
@@ -141,12 +151,12 @@ namespace Annex
         {
             if (sequence == null)
             {
-                throw new ArgumentNullException("sequence");
+                throw new ArgumentNullException(nameof(sequence));
             }
 
             if (action == null)
             {
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
             }
 
             var tasks = new List<Task>();
@@ -156,7 +166,7 @@ namespace Annex
                 tasks.Add(action(item));
             }
 
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -171,17 +181,25 @@ namespace Annex
         /// </returns>
         public static IEnumerable<T> Use<T, TResult>(this IEnumerable<T> sequence, Func<T, TResult> selector)
         {
+            if (sequence == null)
+            {
+                throw new ArgumentNullException(nameof(sequence));
+            }
+
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+
             foreach (var item in sequence)
             {
-                var disposable = selector(item) as IDisposable;
-
                 try
                 {
                     yield return item;
                 }
                 finally
                 {
-                    if (disposable != null)
+                    if (selector(item) is IDisposable disposable)
                     {
                         disposable.Dispose();
                     }
@@ -201,17 +219,20 @@ namespace Annex
         /// </returns>
         public static IEnumerable<T> UseSingle<T, TResult>(this T obj, Func<T, TResult> selector) where TResult : IDisposable
         {
-            var disposable = selector(obj) as IDisposable;
+            return selector == null ? throw new ArgumentNullException(nameof(selector)) : UseSingleInternal();
 
-            try
+            IEnumerable<T> UseSingleInternal()
             {
-                yield return obj;
-            }
-            finally
-            {
-                if (disposable != null)
+                try
                 {
-                    disposable.Dispose();
+                    yield return obj;
+                }
+                finally
+                {
+                    if (selector(obj) is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
                 }
             }
         }

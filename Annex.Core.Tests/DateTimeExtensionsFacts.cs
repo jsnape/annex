@@ -26,7 +26,6 @@ namespace Annex.Tests
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
-    using Xunit.Extensions;
 
     /// <summary>
     /// DateTimeExtensions Facts
@@ -96,7 +95,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [MemberData("ListDateTimeToDateKeyCases")]
+        [MemberData(nameof(ListDateTimeToDateKeyCases))]
         public static void DateTimeToDateKeyConversionShouldBeCorrect(DateTime input, int expected)
         {
             Assert.Equal(expected, input.ToDateKey());
@@ -108,7 +107,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [MemberData("ListDateTimeToTimeKeyCases")]
+        [MemberData(nameof(ListDateTimeToTimeKeyCases))]
         public static void DateTimeToTimeKeyConversionShouldBeCorrect(DateTime input, int expected)
         {
             Assert.Equal(expected, input.ToTimeKey());
@@ -120,7 +119,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [MemberData("ListDateTimeOffsetToDateKeyCases")]
+        [MemberData(nameof(ListDateTimeOffsetToDateKeyCases))]
         public static void DateTimeOffsetToDateKeyConversionShouldBeCorrect(DateTimeOffset input, int expected)
         {
             Assert.Equal(expected, input.ToDateKey());
@@ -132,7 +131,7 @@ namespace Annex.Tests
         /// <param name="input">Input value</param>
         /// <param name="expected">Expected value</param>
         [Theory]
-        [MemberData("ListDateTimeOffsetToTimeKeyCases")]
+        [MemberData(nameof(ListDateTimeOffsetToTimeKeyCases))]
         public static void DateTimeOffsetToTimeKeyConversionShouldBeCorrect(DateTimeOffset input, int expected)
         {
             Assert.Equal(expected, input.ToTimeKey());

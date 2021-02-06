@@ -55,15 +55,14 @@ namespace Annex
         {
             if (node == null)
             {
-                throw new ArgumentNullException("node");
+                throw new ArgumentNullException(nameof(node));
             }
 
             return node
                 .Ancestors()
                 .Select(e => e.Attribute(attributeName))
-                .Select(a => a == null ? null : a.Value)
-                .Where(a => !string.IsNullOrEmpty(a))
-                .FirstOrDefault() ?? defaultValue;
+                .Select(a => a?.Value)
+                .FirstOrDefault(a => !string.IsNullOrEmpty(a)) ?? defaultValue;
         }
 
         /// <summary>
@@ -80,15 +79,14 @@ namespace Annex
         {
             if (node == null)
             {
-                throw new ArgumentNullException("node");
+                throw new ArgumentNullException(nameof(node));
             }
 
             return node
                 .Ancestors(elementName)
                 .Select(e => e.Attribute(attributeName))
-                .Select(a => a == null ? null : a.Value)
-                .Where(a => !string.IsNullOrEmpty(a))
-                .FirstOrDefault() ?? defaultValue;
+                .Select(a => a?.Value)
+                .FirstOrDefault(a => !string.IsNullOrEmpty(a)) ?? defaultValue;
         }
 
         /// <summary>
@@ -119,11 +117,11 @@ namespace Annex
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
 
             var attribute = element.Attribute(attributeName);
-            var value = attribute == null ? null : attribute.Value;
+            var value = attribute?.Value;
 
             if (string.IsNullOrEmpty(value))
             {

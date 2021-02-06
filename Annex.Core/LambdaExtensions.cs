@@ -59,16 +59,12 @@ namespace Annex
                 throw new ArgumentNullException(nameof(memberLambda));
             }
 
-            var memberSelectorExpression = memberLambda.Body as MemberExpression;
-
-            if (memberSelectorExpression == null)
+            if (!(memberLambda.Body is MemberExpression memberSelectorExpression))
             {
                 throw new ArgumentException("memberLambda.Body cannot be null");
             }
 
-            var property = memberSelectorExpression.Member as PropertyInfo;
-
-            if (property == null)
+            if (!(memberSelectorExpression.Member is PropertyInfo property))
             {
                 throw new ArgumentException("memberLambda is not a property");
             }
