@@ -9,18 +9,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-        matrix:
-            dotnet: [ '2.2.103', '3.0', '3.1.x', '5.0.x' ]
+    # strategy:
+    #     matrix:
+    #         dotnet: [ '2.2.103', '3.0', '3.1.x', '5.0.x' ]
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ matrix.dotnet }}
+        # dotnet-version: ${{ matrix.dotnet }}
+        dotnet-version: '3.0'
     - name: Restore dependencies
-      run: dotnet restore ./annex.sln
+      run: dotnet restore ./Annex.sln
     - name: Build
-      run: dotnet build ./annex.sln --no-restore
+      run: dotnet build ./Annex.sln --no-restore
     - name: Test
-      run: dotnet test ./annex.sln --no-build --verbosity normal
+      run: dotnet test ./Annex.sln --no-build --verbosity normal
