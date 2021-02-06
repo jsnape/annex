@@ -29,7 +29,7 @@ namespace Annex.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using NSubstitute;
-    using Ploeh.AutoFixture;
+    using AutoFixture;
     using Xunit;
 
     /// <summary>

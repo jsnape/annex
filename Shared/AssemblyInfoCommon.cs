@@ -1,4 +1,4 @@
-﻿#region Copyright (c) 2014 James Snape
+﻿#region Copyright (c) 2014-2021 James Snape
 // <copyright file="AssemblyInfoCommon.cs" company="James Snape">
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +21,7 @@
 #endregion
 
 using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyCompany("James Snape")]
-[assembly: AssemblyProduct("Annex")]
-[assembly: AssemblyCopyright("Copyright © 2014")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

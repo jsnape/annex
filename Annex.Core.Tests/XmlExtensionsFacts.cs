@@ -22,10 +22,10 @@
 
 namespace Annex.Tests
 {
+    using Annex.Core.Tests.Properties;
     using System;
     using System.Linq;
     using System.Xml.Linq;
-    using Properties;
     using Xunit;
 
     /// <summary>

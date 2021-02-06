@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>James Snape</Authors>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/jsnape/annex</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jsnape/annex</RepositoryUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <DocumentationFile>\Annex.xml</DocumentationFile>
+    <Copyright>Copyright © 2014-2021 James Snape</Copyright>
+    <AssemblyName>Annex.Core</AssemblyName>
+    <RootNamespace>Annex</RootNamespace>
+    <Product>Annex</Product>
+    <Description>A set of C# extension methods and helpers.</Description>
+    <PackageReleaseNotes>Updated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageTags>annex extensions helpers collections functional</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="Properties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\Shared\CodeAnalysisDictionary.xml" Link="CodeAnalysisDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

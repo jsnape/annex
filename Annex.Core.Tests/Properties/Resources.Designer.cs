@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Annex.Tests.Properties {
+namespace Annex.Core.Tests.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace Annex.Tests.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -39,7 +39,7 @@ namespace Annex.Tests.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Annex.Tests.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Annex.Core.Tests.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,10 +62,10 @@ namespace Annex.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;RootElement ChildAttribute=&quot;childAttribute2=&quot; LeafAttribute=&quot;leafattribute3&quot;&gt;
+        ///&lt;RootElement ChildAttribute=&quot;childAttribute2&quot; LeafAttribute=&quot;leafattribute3&quot;&gt;
         ///  &lt;ChildElement ChildAttribute=&quot;childAttribute1&quot;&gt;
         ///    &lt;ChildElement LeafAttribute=&quot;leafattribute2&quot;&gt;
-        ///      &lt;LeafElement LeafAttribute=&quot;leafattribute1&quot;&gt;
+        ///      &lt;LeafElement LeafAttribute=&quot;leafattribute1&quot; LeafOnlyAttribute=&quot;leafOnlyAttribute&quot;&gt;
         ///      &lt;/LeafElement&gt;
         ///    &lt;/ChildElement&gt;
         ///  &lt;/ChildElement&gt;

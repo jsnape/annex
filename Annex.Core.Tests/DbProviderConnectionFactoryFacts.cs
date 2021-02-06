@@ -24,6 +24,9 @@
 // </copyright>
 #endregion
 
+// This depends on DbProviderFactories.GetFactory(provider) which isn't available in .NET Standard 2.0
+#if NETFULL 
+
 namespace Annex.Tests
 {
     using System;
@@ -90,3 +93,4 @@ namespace Annex.Tests
         }
     }
 }
+#endif
