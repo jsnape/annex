@@ -15,6 +15,10 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
+[*.yml]
+indent_style = space
+indent_size = 2
+
 [*.{cs,vb}]
 
 # IDE0044: Add readonly modifier
