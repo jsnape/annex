@@ -98,21 +98,6 @@ namespace Annex
         /// <returns>
         /// The value of the attribute or <c>defaultValue</c> if not found.
         /// </returns>
-        [Obsolete("Use SelfOrAncestorAttribute instead")]
-        public static string ElementOrAncestorAttribute(this XElement element, XName attributeName, string defaultValue)
-        {
-            return element.SelfOrAncestorAttribute(attributeName, defaultValue);
-        }
-
-        /// <summary>
-        /// Finds an element or ancestor attribute.
-        /// </summary>
-        /// <param name="element">The element.</param>
-        /// <param name="attributeName">Name of the attribute.</param>
-        /// <param name="defaultValue">The default value.</param>
-        /// <returns>
-        /// The value of the attribute or <c>defaultValue</c> if not found.
-        /// </returns>
         public static string SelfOrAncestorAttribute(this XElement element, XName attributeName, string defaultValue)
         {
             if (element == null)
